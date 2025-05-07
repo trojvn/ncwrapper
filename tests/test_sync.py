@@ -12,6 +12,11 @@ P = os.getenv("P", "")
 L = os.getenv("L", "")
 
 
+def test_rm():
+    nc = NextCloud(L, U, P)
+    assert nc.rm("/test/")
+
+
 def test_mkdir():
     nc = NextCloud(L, U, P)
     assert nc.mkdir("/test")

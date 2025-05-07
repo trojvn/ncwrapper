@@ -13,6 +13,12 @@ P = os.getenv("P", "")
 
 
 @pytest.mark.asyncio
+async def test_rm():
+    nc = AsyncNextCloud(L, U, P)
+    assert await nc.rm("/test_async/")
+
+
+@pytest.mark.asyncio
 async def test_mkdir():
     nc = AsyncNextCloud(L, U, P)
     assert await nc.mkdir("/test_async")
