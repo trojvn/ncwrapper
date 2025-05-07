@@ -87,7 +87,7 @@ class AsyncNextCloud(BaseAsyncClient):
                 "permissions": permissions,
             },
         )
-        if r.status != 200:
+        if r.status not in (200, 201):
             return ""
         if not (_url := ET.fromstring(await r.text()).find(".//url")):
             return ""

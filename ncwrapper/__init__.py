@@ -84,7 +84,7 @@ class NextCloud(BaseClient):
                 "permissions": permissions,
             },
         )
-        if r.status_code != 200:
+        if r.status_code not in (200, 201):
             return ""
         if not (_url := ET.fromstring(r.text).find(".//url")):
             return ""
