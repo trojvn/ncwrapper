@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ncwrapper"
+version = "0.1.0"
+description = ""
+authors = ["trojvn <mrx.trojan@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+httpwrapper = {git = "https://github.com/trojvn/httpwrapper.git"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
