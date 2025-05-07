@@ -108,3 +108,25 @@ class AsyncNextCloud(BaseAsyncClient):
         if url_element is not None:
             return url_element.text or ""
         return ""
+
+    async def rm(self, path: str) -> bool:
+        """
+        Remove a file or directory from the NextCloud server.
+
+        Args:
+            path (str): The path to the file or directory to remove.
+            example:
+                path = "path/to/file.txt"
+                path = "path/to/directory/"
+
+        Returns:
+            bool: True if the file or directory was removed successfully, False otherwise.
+        """
+        if not path.startswith("/"):
+            path = f"/{path}"
+        return (
+            await self._delete(
+                config=self.__config,
+                url=f"/remote.php/webdav{path}",
+            )
+        ).status in (200, 201, 204)

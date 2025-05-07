@@ -106,5 +106,25 @@ class NextCloud(BaseClient):
             return url_element.text or ""
         return ""
 
+    def rm(self, path: str) -> bool:
+        """
+        Remove a file or directory from the NextCloud server.
+
+        Args:
+            path (str): The path to the file or directory to remove.
+            example:
+                path = "path/to/file.txt"
+                path = "path/to/directory/"
+
+        Returns:
+            bool: True if the file or directory was removed successfully, False otherwise.
+        """
+        if not path.startswith("/"):
+            path = f"/{path}"
+        return self._delete(
+            f"/remote.php/webdav{path}",
+            config=self.__config,
+        ).status_code in (200, 201, 204)
+
 
 __all__ = ["NextCloud", "AsyncNextCloud"]
