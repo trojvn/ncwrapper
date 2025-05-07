@@ -10,6 +10,11 @@ python = "^3.13"
 httpwrapper = {git = "https://github.com/trojvn/httpwrapper.git"}
 
 
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^0.26.0"
+python-dotenv = "^1.1.0"
+pytest = "^8.3.5"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

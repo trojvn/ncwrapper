@@ -89,6 +89,8 @@ class AsyncNextCloud(BaseAsyncClient):
         )
         if r.status not in (200, 201):
             return ""
-        if not (_url := ET.fromstring(await r.text()).find(".//url")):
-            return ""
-        return _url.text or ""
+        root = ET.fromstring(await r.text())
+        url_element = root.find(".//url")
+        if url_element is not None:
+            return url_element.text or ""
+        return ""

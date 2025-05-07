@@ -86,9 +86,11 @@ class NextCloud(BaseClient):
         )
         if r.status_code not in (200, 201):
             return ""
-        if not (_url := ET.fromstring(r.text).find(".//url")):
-            return ""
-        return _url.text or ""
+        root = ET.fromstring(r.text)
+        url_element = root.find(".//url")
+        if url_element is not None:
+            return url_element.text or ""
+        return ""
 
 
 __all__ = ["NextCloud", "AsyncNextCloud"]
