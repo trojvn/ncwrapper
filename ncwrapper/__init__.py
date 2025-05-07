@@ -7,8 +7,22 @@ from .async_ import AsyncNextCloud
 
 
 class NextCloud(BaseClient):
-    def __init__(self, base_url: str, user: str, pswd: str):
-        super().__init__(base_url, {"OCS-APIRequest": "true"}, auth=(user, pswd))
+    def __init__(self, host: str, user: str, pswd: str):
+        """
+        Initialize the NextCloud client.
+
+        Args:
+            host (str): The host of the NextCloud server.
+            example:
+                host = "https://nextcloud.com"
+            user (str): The username of the NextCloud server.
+            example:
+                user = "admin"
+            pswd (str): The password of the NextCloud server.
+            example:
+                pswd = "admin"
+        """
+        super().__init__(host, {"OCS-APIRequest": "true"}, auth=(user, pswd))
         self.__config = ClientConfig(3, 900, 3, 3)
 
     def mkdir(self, dir_path: str) -> bool:
